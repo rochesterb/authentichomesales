@@ -1,0 +1,162 @@
+<section id="section-property" class="col-xs-11" ng-controller="section-property">
+    <div class="clearfix container">
+        <div class="section-heading col-xs-12 col-md-4 ">
+            <h2>Properties</h2>
+        </div>
+        <div class="col-xs-12 col-md-8">
+            <ul class="admin-opt">
+                <li class="active"><a href="javascript:void(0)" ng-click="propListDB()" data-toggle="tab"  data-target="#property-list">Property List</a></li>
+                <li><a href="javascript:void(0)" data-toggle="tab"  data-target="#add-property">Add Property</a></li>
+                <li class="hidden"><a href="javascript:void(0)" data-toggle="tab"  data-target="#edit-prop">Edit Property</a></li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="tab-content container">
+        <section id="property-list" class="tab-pane fade in active ">
+            <div class="alert delete_prop_success alert-success hidden" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Success:</span>
+                Property deleted successfully!!!
+            </div>
+            <div class="col-xs-12 tavle-box">
+                <div class="col-sm-6 col-md-3 " ng-repeat="prop in propertiesList track by $index">
+                    <div class="thumbnail text-center prop{{$index}}" ng-mouseleave="hoverOut($index)" ng-mouseover="hoverIn($index)">
+                        <div class="back">
+                            <div class="box2">
+                                <div class="caption">
+                                    <h3>{{prop.PropertyAddressLine1}} {{prop.PropertyAddressLine2}}</h3>
+                                    <p><a href="javascript:void(0)" class="btn btn-primary" ng-click="editprop(prop.PropertyId)" role="button">Edit Property</a></p>
+                                    <p><a href="javascript:void(0)" class="btn btn-primary" ng-click="deleteprop(prop.PropertyId)"  ng-confirm-click="You are about to delete selected property from list !! Are you SURE you want to delete?" role="button">Delete Property</a></p>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div class="front">
+
+
+
+
+                            <div class="caption">
+                                <h3>{{prop.PropertyAddressLine1}} {{prop.PropertyAddressLine2}}</h3>
+                                <p>{{prop.LegalDescription}}</p>
+                                <p>{{prop.SquareFeet}} Sq.Ft | Built Year-{{prop.YearBuilt}}</p>
+                                <p><a href="#" class="btn btn-primary" role="button">View</a></p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </section>
+        <section id="add-property" class="tab-pane fade" >
+
+            <div class="col-xs-12 col-md-8 table-box" >
+                <div class="alert successpropadd alert-success hidden" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span class="sr-only">Success:</span>
+                    Congratulation New property added successfully!!!
+                </div>
+                <form method="POST" id="addpropertyform" style="overflow-y: scroll;"  >
+
+                    <div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">Address</label></div>
+                        <div class="col-xs-6"><input type="text" required class="form-control" required ng-model="property.PropertyAddressLine2" /></div>
+                    </div><div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">City</label></div>
+                        <div class="col-xs-6"><input type="text" required class="form-control" required ng-model="property.PropertyCity" /></div>
+                    </div><div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">State</label></div>
+                        <div class="col-xs-6"><input type="text" required class="form-control" required ng-model="property.PropertyState" /></div>
+                    </div><div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">Zip</label></div>
+                        <div class="col-xs-6"><input type="text" required class="form-control" required ng-model="property.PropertyZip" /></div>
+                    </div><div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">Description</label></div>
+
+                        <div class="col-xs-6"><input type="text" required class="form-control" required ng-model="property.LegalDescription" /></div></div><div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">Country</label></div>
+                        <div class="col-xs-6"><input type="text" required class="form-control" required ng-model="property.CountyName" /></div></div><div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">Built Year</label></div>
+                        <div class="col-xs-6"><input type="text" required class="form-control" required ng-model="property.YearBuilt" /></div></div><div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">No. of Bed Rooms</label></div>
+                        <div class="col-xs-6"><input type="text" required class="form-control" required ng-model="property.Bedrooms" /></div></div><div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">No. of Bathrooms</label></div>
+                        <div class="col-xs-6"><input type="text" required class="form-control" required ng-model="property.Bathrooms" /></div></div><div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">Square feet</label></div>
+                        <div class="col-xs-6"><input type="text" required class="form-control" required ng-model="property.SquareFeet" /></div></div><div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">Heating Type</label></div>
+                        <div class="col-xs-6"><input type="text" required class="form-control" required ng-model="property.HeatingType" /></div></div><div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">Cooling Type</label></div>
+                        <div class="col-xs-6"><input type="text" required class="form-control" required ng-model="property.CoolingType" /></div></div><div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">Exterior Type</label></div>
+                        <div class="col-xs-6"><input type="text" required class="form-control" required ng-model="property.ExteriorType" /></div></div><div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">Roof Type</label></div>
+                        <div class="col-xs-6"><input type="text" required class="form-control" required ng-model="property.RoofType" /></div></div><div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">Tax Amount</label></div>
+                        <div class="col-xs-6"><input type="text" required class="form-control" required ng-model="property.TaxAmount" /></div></div><div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">PayOff</label></div>
+                        <div class="col-xs-6"><input type="text" required class="form-control" required ng-model="property.PayOff" /></div></div><div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">Status Of Property</label></div>
+                        <div class="col-xs-6"><input type="text" required class="form-control" required ng-model="property.StatusOfProperty" /></div></div><div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">Lead Type</label></div>
+                        <div class="col-xs-6"><input type="text" required class="form-control" required ng-model="property.LeadType" /></div></div><div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">Phone Number</label></div>
+                        <div class="col-xs-6"><input type="text" required class="form-control" required ng-model="property.DisplayPhoneNumber" /></div></div>
+
+                    <div class="col-xs-12">
+                        <div class="col-xs-6"><input type="submit" class="form-control btn btn-primary" required ng-click="addpropertysubmit()" /></div>
+                    </div>
+                </form>
+            </div>
+        </section>
+        <section id="edit-prop" class="col-xs-11 tab-pane fade">
+
+            <div class="section-heading">
+                <h2>Edit property</h2>
+            </div>
+            <div class="alert editsuccessadded alert-success hidden" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Success:</span>
+                Congratulation property edited successfully!!!
+            </div>
+            <div class="col-xs-12 col-md-4">
+                <label class="pull-left">Select User to Edit</label>
+                <select class="form-control " ng-model="selectedproperty" ng-change="editproperty(selectedproperty, '{{selectedproperty}}')">
+                    <option value="{{x.PropertyId}}" ng-repeat="x in propertyrecord">{{x.FirstName}} {{x.LastName}}</option>
+                </select>
+            </div>
+
+            <div class="col-xs-12 col-md-8 clearfix">
+                <form method="POST" id="editpropertyform" class="hidden"   >
+                    <div class="col-xs-12">
+                        <div class="col-xs-6">
+                            <label class="titletxt">First Name</label>
+                        </div>
+                        <div class="col-xs-6"><input type="text" required class="form-control" required ng-model="propertyData.FirstName" /></div></div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6"><label class="titletxt">LastName</label></div>
+                        <div class="col-xs-6"><input type="text" class="form-control" required ng-model="propertyData.LastName" /></div></div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6"><label class="titletxt">Phone Number</label></div>
+                        <div class="col-xs-6"><input type="text" class="form-control" required ng-model="propertyData.PhoneNumber" /></div></div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6"><label class="titletxt">Address Line1</label></div>
+                        <div class="col-xs-6"><input type="text" class="form-control" required ng-model="propertyData.AddressLine1" /></div>
+
+                    </div><div class="col-xs-12">
+                        <div class="col-xs-6"><label class="titletxt">Address Line2</label></div>
+                        <div class="col-xs-6"><input type="text" class="form-control" required ng-model="propertyData.AddressLine2" /></div>
+
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6"><label class="titletxt">City</label></div>
+                        <div class="col-xs-6"><input type="text" class="form-control" required ng-model="propertyData.City" /></div></div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6"><label class="titletxt">State</label></div>
+                        <div class="col-xs-6"><input type="text" class="form-control" required ng-model="propertyData.State" /></div></div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6"><label class="titletxt">Zip</label></div>
+                        <div class="col-xs-6"><input type="text" class="form-control" required ng-model="propertyData.Zip" /></div></div>
+                    <div class="col-xs-12">
+
+                        <div class="col-xs-6"><label class="titletxt">Preferred Contact Timing</label></div>
+                        <div class="col-xs-6"><input type="text" class="form-control" required ng-model="propertyData.PreferredContactTiming" /></div></div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6"><label class="titletxt">property EmailId</label></div>
+                        <div class="col-xs-6"><input type="text" class="form-control" required ng-model="propertyData.EmailId" />
+                            <div class="hidden"></div>
+                        </div></div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6"><input type="submit" class="form-control btn btn-primary" required ng-click="editpropertysubmit()" /></div>
+                    </div>
+                </form>
+            </div>
+
+        </section>
+    </div>
+</section>

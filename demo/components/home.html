@@ -1,0 +1,75 @@
+<section id="home" class="tab-pane col-md-11 active">
+    <div class="col-xs-12" ng-controller="sectioncount">
+        <div class="col-xs-6 col-md-3">
+            <div class="panel panel-primary" data-target="#section-seller" data-toggle="tab">
+                <div class="panel-heading clearfix">
+                    <div class="col-xs-12 text-center">
+                        <i class="fa fa-users fa-2x m-t-8 c-ed"></i>
+                        <div class="huge">{{counts["1"].sellerscount}} <span>Sellers</span></div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <a ng-click="sellersListDB()" href="#!section-seller">
+                        <span class="pull-left">View Details</span>
+
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </a>     
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <div class="panel panel-primary" data-target="#section-buyer" data-toggle="tab">
+                <div class="panel-heading clearfix">
+                    <div class="col-xs-12 text-center">
+                        <i class="fa fa-user-plus fa-2x m-t-8 c-ed"></i>
+                        <div class="huge">{{counts["0"].buyerscount}} <span>Buyers</span></div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+
+                    <a ng-click="buyersListDB()" href="#!section-buyer">
+                        <span class="pull-left">View Details</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </a>                                
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <div class="panel panel-primary" data-target="#section-property" data-toggle="tab">
+                <div class="panel-heading clearfix">
+                    <div class="col-xs-12 text-center">
+                        <i class="fa fa-home fa-2x m-t-8 c-ed"></i>
+                        <div class="huge">{{counts["2"].propertiescount}} <span>Properties</span></div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <a ng-click="propertiesListDB()" href="#!section-property">
+                        <span class="pull-left">View Details</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 col-md-3">
+            <div class="panel panel-primary" data-target="#section-campaign" data-toggle="tab">
+                <div class="panel-heading clearfix">
+                    <div class="col-xs-12 text-center">
+                        <i class="fa fa-bullhorn fa-2x m-t-8 c-ed"></i>
+                        <div class="huge"><span>Campaign</span></div>
+                    </div>
+                </div>
+                <div class="panel-footer">
+                    <a ng-click="campaignsListDB()" href="#!section-campaign">
+                        <span class="pull-left">View Details</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>

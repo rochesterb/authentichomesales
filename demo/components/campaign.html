@@ -1,0 +1,75 @@
+
+<section id="section-campaign" class="col-xs-11" ng-controller="campaignCtrl">
+    <div class="clearfix container">
+        <div class="section-heading col-xs-12 col-md-4 ">
+            <h2>Campaign</h2> 
+        </div>
+        <div class="col-xs-12 col-md-8">
+            <ul class="admin-opt">
+                <li class="active"><a href="javascript:void(0)" data-toggle="tab"  data-target="#campaign-list">Campaign List</a></li>
+                <li><a href="javascript:void(0)" data-toggle="tab"  data-target="#add-campaign">Add Campaign</a></li>
+
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="tab-content container">
+        <section id="add-campaign" class="tab-pane fade">
+
+            <div class="col-xs-12 col-md-8 table-box">
+                <div class="alert campsuccessadd alert-success hidden" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span class="sr-only">Success:</span>
+                    Congratulation New Campaign added successfully!!!
+                </div>		
+                <form method="POST" id="addcampaignform"   >
+
+
+                    <div class="col-xs-12">
+                        <div class="col-xs-6"><label class="titletxt">Property</label></div>
+                        <div class="col-xs-6">
+                            <select class="form-control" >
+                                <option ng-repeat="prop in propertyListGlobal" value="prop.PropertyId">{{prop.PropertyAddressLine1}} {{prop.PropertyAddressLine2}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12">
+                        <div class="col-xs-6"><label class="titletxt">Buyer</label></div>
+                        <div class="col-xs-6">
+                            <select class="form-control">
+                                <option ng-repeat="buy in buyersListGlobal" value="buy.BuyerId">{{buy.FirstName}} {{buy.LastName}}</option>
+                            </select>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-xs-12">
+                        <div class="col-xs-6"><label class="titletxt">Email Format</label></div>
+                        <div class="col-xs-6">
+                            <select  class="form-control" ng-model="emailFormat">
+                                <option value="1">Format 1</option>
+                                <option value="2">Format 2</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6"><label class="titletxt">Email Text</label></div>
+                        <div class="col-xs-6">
+                            <textarea  class="form-control" cols="30" rows="6"></textarea>
+                        </div>
+                    </div>
+
+
+
+                    <div class="col-xs-12">
+                        <div class="col-xs-6"><input type="submit" value="Run Campaign" class="form-control btn btn-primary" required ng-click="addcampaignsubmit()" /></div>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </div>
+</section>   

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<title>Admin - HonestHomeSales</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+	<script src="../session.php" ></script>
+	<link rel="icon" type="image/png" href="images/about/homeicon.png" />
+    
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Open+Sans|Raleway" rel="stylesheet">
+	<link rel="stylesheet" href="css/flexslider.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/style.css">
+	    	
+    <link href="css/mailbox.css" rel="stylesheet">
+
+</head>
+<body ng-app="myApp" ng-controller="mainController" >
+<div class="container">
+
+    
+	<form name="form1" class="well form-horizontal" id="contact_form" method="post" action="../SendEmail.php">
+<fieldset>
+
+<!-- Form Name -->
+<legend>Send Email</legend>
+
+
+       <div class="form-group">
+  <label class="col-md-4 control-label">To</label>  
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+  <input name="email_list" type="text" class="form-control" id="email_list" size="500" value="Gagan.suri@gmail.com,gagan">
+    </div>
+  </div>
+</div>
+
+
+<!-- Text input-->
+       
+
+<!-- Text input-->
+<div class="form-group">
+  <label class="col-md-4 control-label">Subject</label>  
+   <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+  <input name="mail_subject" type="text" class="form-control" id="mail_subject" size="100" value="New property for sale near you">
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label">Property</label>  
+   <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-globe"></i></span>
+   <input name="property_list" class="form-control" type="text" id="property_list" size="100" value="200 Carolina point parway">
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+  <label class="col-md-4 control-label">Message</label>
+    <div class="col-md-4 inputGroupContainer">
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-pencil"></i></span>
+        	
+			
+
+    <!--<textarea class='form-control wysi'></textarea>-->
+   <textarea class="form-control" name="mail_body" cols="35" rows="5" id="mail_body"></textarea>
+
+
+  </div>
+  </div>
+</div>
+
+
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label"></label>
+  <div class="col-md-4">
+    <button type="submit" class="btn btn-warning" >Send <span class="glyphicon glyphicon-send"></span></button>
+  </div>
+</div>
+
+</fieldset>
+</form>
+</div>
+    </div><!-- /.container -->
+		<!-- jQuery -->
+<script>
+	var caption = "",file='';
+	</script>
+	   <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	
+    <script type="text/javascript" src="js/wysihtml5.js"></script>
+  
+	<script src="js/underscore.js"></script>
+	
+	<!--script type="/js/bootstrap-wysihtml5-0.0.2/bootstrap-wysihtml5-0.0.2.min.js"></script-->
+	<script type="text/javascript" src="js/bootstrap-wysihtml5-0.0.2.js"></script>
+	<script type="text/javascript" src="js/custom_image_and_upload_wysihtml5.js"></script>
+	<script type="text/javascript" src="js/jqueryupload.js"></script>
+	</body>
+	</html>

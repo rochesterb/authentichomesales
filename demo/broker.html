@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+	<title>Admin - HonestHomeSales</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+	<script src="../session.php" ></script>
+	<link rel="icon" type="image/png" href="images/about/homeicon.png" />
+
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Sans|Open+Sans|Raleway" rel="stylesheet">
+	<link rel="stylesheet" href="css/flexslider.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body ng-app="myApp" ng-controller="mainController" >
+	<!--top header-->
+
+	<header>
+
+	<!--main-nav-->
+
+		<div id="main-nav">
+
+			<nav class="navbar">
+				<div class="container-fluid">
+
+					<div class="navbar-header">
+						<div class="navbar-brand">
+						<a href="index.html" >
+							<div class="logo pull-left"></div>
+						</a></div>
+
+					</div>
+
+					<div class="text-center user-block">
+						<label class="userImg">
+							<span class="glyphicon glyphicon-user"></span>
+						</label>
+						<div class="dropdown user-opt">
+							 <label  type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true" class="welcmuser dropdown-toggle">&nbsp; Welcome {{brokerName}} <span class="caret"></span></label>
+							  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+								<li><a href="../logout.php">Logout</a></li>
+							  </ul>
+							</div>
+					</div>
+
+
+				</div>
+			</nav>
+		</div>
+
+	</header>
+	<div class="clearfix"></div>
+<div id="top" data-spy="scroll"></div>
+
+<div class="tab-content" >
+	<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#tabslist">
+		<span class="sr-only">Toggle</span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+		<span class="icon-bar"></span>
+	</button>
+   <div class="col-xs-12 col-md-1 v-nav navbar-collapse collapse" id="tabslist">
+	<ul class="nav nav-pills">
+	  <li role="presentation" ng-class="{active:isActive('/')}"><a  href="#/!">Home</a></li>
+	  <li role="presentation" ng-class="{active:isActive('/section-seller')}"><a ng-click="sellerListDB()" href="#!section-seller">Sellers</a></li>
+	  <li role="presentation" ng-class="{active:isActive('/section-buyer')}"><a ng-click="buyerListDB()" href="#!section-buyer">Buyers</a></li>
+	  <li role="presentation" ng-class="{active:isActive('/section-property')}" ><a ng-click="propListDB()" href="#!section-property">Properties</a></li>
+	  <li role="presentation" ng-class="{active:isActive('/section-campaign')}"><a href="#!section-campaign">Campaign </a></li>
+          <li role="presentation" ng-class="{active:isActive('/section-notes')}"><a ng-click="notesListDB()" href="#!section-notes">Notes</a></li>
+	</ul>
+  </div>
+  <div ng-view></div>
+
+
+	<div class="clearfix"></div>	<!--bottom footer-->
+
+
+
+	<!-- jQuery -->
+   <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+	    <script src="js/angular/angular.min.js"></script>
+   <!-- <script src="js/angular/module.js"></script> -->
+   <script src="js/angular/angular-route.js"></script>
+    <script src="js/angular/angularscript.js"></script>
+
+
+<style>
+#section-contact, #section-seller, #section-buyer{opacity:9}
+</style>
+
+
+
+
+
+<!--Edit Modal-->
+<div id="modal-editbuyer" class="modal fade" role="dialog">
+  <div class="modal-dialog" >
+
+    <!-- Modal content-->
+    <div class="modal-content pull-left">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edit buyer</h4>
+      </div>
+      <div class="modal-body  pull-left">
+
+
+	<section id="edit-buyer" class="col-xs-12 p-0"  >
+
+
+			<div class="alert editsuccessadded alert-success hidden" role="alert">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Success:</span>
+  Congratulation buyer edited successfully!!!
+</div>
+				<div class="col-xs-12 p-0 clearfix">
+					 <form method="POST" id="editbuyerform" class="">
+				<div class="col-xs-12">
+				<div class="col-xs-6">
+					<label class="titletxt">First Name</label>
+				</div>
+				<div class="col-xs-6"><input type="text"  class="form-control" ng-model="buyerdataedit.FirstName" /></div></div>
+				<div class="col-xs-12">
+				<div class="col-xs-6"><label class="titletxt">Last Name</label></div>
+				<div class="col-xs-6"><input type="text" class="form-control"  ng-model="buyerdataedit.LastName" /></div></div>
+				<div class="col-xs-12">
+				<div class="col-xs-6"><label class="titletxt">Phone Number</label></div>
+				<div class="col-xs-6"><input type="text" class="form-control"  ng-model="buyerdataedit.PhoneNumber" /></div></div>
+				<div class="col-xs-12">
+				<div class="col-xs-6"><label class="titletxt">Address Line1</label></div>
+				<div class="col-xs-6"><input type="text" class="form-control"  ng-model="buyerdataedit.AddressLine1" /></div>
+
+				</div><div class="col-xs-12">
+				<div class="col-xs-6"><label class="titletxt">Address Line2</label></div>
+				<div class="col-xs-6"><input type="text" class="form-control"  ng-model="buyerdataedit.AddressLine2" /></div>
+
+				</div>
+				<div class="col-xs-12">
+				<div class="col-xs-6"><label class="titletxt">City</label></div>
+				<div class="col-xs-6"><input type="text" class="form-control"  ng-model="buyerdataedit.City" /></div></div>
+				<div class="col-xs-12">
+				<div class="col-xs-6"><label class="titletxt">State</label></div>
+				<div class="col-xs-6"><input type="text" class="form-control"  ng-model="buyerdataedit.State" /></div></div>
+				<div class="col-xs-12">
+				<div class="col-xs-6"><label class="titletxt">Zip</label></div>
+				<div class="col-xs-6"><input type="text" class="form-control"  ng-model="buyerdataedit.Zip" /></div></div>
+				<div class="col-xs-12">
+
+				<div class="col-xs-6"><label class="titletxt">Preferred Contact Timing</label></div>
+				<div class="col-xs-6"><input type="text" class="form-control"  ng-model="buyerdataedit.PreferredContactTiming" /></div></div>
+				<div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">Buyer EmailId</label></div>
+				<div class="col-xs-6"><input type="text" class="form-control"  ng-model="buyerdataedit.EmailId" />
+				<div class="hidden">
+					<input type="text" ng-model="buyerdataedit.BuyerId" />
+				</div>
+				</div></div><div class="col-xs-12">
+
+				<div class="col-xs-6"><label class="titletxt">From Budget</label></div>
+				<div class="col-xs-6"><input type="text" class="form-control"  ng-model="buyerdataedit.FromBudget" /></div></div><div class="col-xs-12">
+
+				<div class="col-xs-6"><label class="titletxt">To Budget</label></div>
+				<div class="col-xs-6"><input type="text" class="form-control"  ng-model="buyerdataedit.ToBudget" /></div></div>
+				<div class="col-xs-12">
+				<div class="col-xs-6"><input type="submit" class="form-control btn btn-primary"  ng-click="editbuyersubmit()" /></div>
+				</div>
+		  </form>
+			</div>
+
+	  </section>
+	   </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!--Edit Modal-->
+<div id="modal-editseller" class="modal fade" role="dialog">
+  <div class="modal-dialog" >
+
+    <!-- Modal content-->
+    <div class="modal-content pull-left">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edit Seller</h4>
+      </div>
+      <div class="modal-body  pull-left">
+
+
+	<section id="edit-buyer" class="col-xs-12 p-0"  >
+
+
+			<div class="alert editsuccessadded alert-success hidden" role="alert">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Success:</span>
+  Congratulation buyer edited successfully!!!
+</div>
+				<div class="col-xs-12 p-0 clearfix">
+					 <form method="POST" id="editsellerform" class="">
+				<div class="col-xs-12">
+				<div class="col-xs-6">
+					<label class="titletxt">First Name</label>
+				</div>
+				<div class="col-xs-6"><input type="text"  class="form-control" ng-model="sellerdataedit.FirstName" /></div></div>
+				<div class="col-xs-12">
+				<div class="col-xs-6"><label class="titletxt">Last Name</label></div>
+				<div class="col-xs-6"><input type="text" class="form-control"  ng-model="sellerdataedit.LastName" /></div></div>
+				<div class="col-xs-12">
+				<div class="col-xs-6"><label class="titletxt">Phone Number</label></div>
+				<div class="col-xs-6"><input type="text" class="form-control"  ng-model="sellerdataedit.PhoneNumber" /></div></div>
+				<div class="col-xs-12">
+				<div class="col-xs-6"><label class="titletxt">Address Line1</label></div>
+				<div class="col-xs-6"><input type="text" class="form-control"  ng-model="sellerdataedit.AddressLine1" /></div>
+
+				</div><div class="col-xs-12">
+				<div class="col-xs-6"><label class="titletxt">Address Line2</label></div>
+				<div class="col-xs-6"><input type="text" class="form-control"  ng-model="sellerdataedit.AddressLine2" /></div>
+
+				</div>
+				<div class="col-xs-12">
+				<div class="col-xs-6"><label class="titletxt">City</label></div>
+				<div class="col-xs-6"><input type="text" class="form-control"  ng-model="sellerdataedit.City" /></div></div>
+				<div class="col-xs-12">
+				<div class="col-xs-6"><label class="titletxt">State</label></div>
+				<div class="col-xs-6"><input type="text" class="form-control"  ng-model="sellerdataedit.State" /></div></div>
+				<div class="col-xs-12">
+				<div class="col-xs-6"><label class="titletxt">Zip</label></div>
+				<div class="col-xs-6"><input type="text" class="form-control"  ng-model="sellerdataedit.Zip" /></div></div>
+				<div class="col-xs-12">
+
+				<div class="col-xs-6"><label class="titletxt">Preferred Contact Timing</label></div>
+				<div class="col-xs-6"><input type="text" class="form-control"  ng-model="sellerdataedit.PreferredContactTiming" /></div></div>
+				<div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">seller EmailId</label></div>
+				<div class="col-xs-6"><input type="text" class="form-control"  ng-model="sellerdataedit.SellerEmailId" />
+				<div class="hidden">
+					<input type="text" ng-model="sellerdataedit.SellerId" />
+				</div>
+				</div></div><div class="col-xs-12">
+
+				<div class="col-xs-6"><input type="submit" class="form-control btn btn-primary"  ng-click="editsellersubmit()" /></div>
+				</div>
+		  </form>
+			</div>
+
+	  </section>
+	   </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!--Edit Modal-->
+<div id="modal-editprop" class="modal fade" role="dialog">
+  <div class="modal-dialog" >
+
+    <!-- Modal content-->
+    <div class="modal-content pull-left">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Edit Property</h4>
+      </div>
+      <div class="modal-body  pull-left">
+
+
+	<section id="edit-prop" class="col-xs-12 p-0"  >
+
+
+			<div class="alert propeditsuccess alert-success hidden" role="alert">
+  <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+  <span class="sr-only">Success:</span>
+  Congratulation buyer edited successfully!!!
+</div>
+				<div class="col-xs-12 p-0 clearfix">
+				 <form method="POST" id="editpropertyform"   >
+
+				<div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">Address</label></div>
+				<div class="col-xs-6"><input type="text" required class="form-control"  ng-model="propdataedit.PropertyAddressLine2" /></div>
+				</div><div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">City</label></div>
+							<div class="col-xs-6"><input type="text"  class="form-control"  ng-model="propdataedit.PropertyCity" /></div>
+							</div><div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">State</label></div>
+							<div class="col-xs-6"><input type="text"  class="form-control"  ng-model="propdataedit.PropertyState" /></div>
+							</div><div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">Zip</label></div>
+							<div class="col-xs-6"><input type="text"  class="form-control"  ng-model="propdataedit.PropertyZip" /></div>
+							</div><div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">Description</label></div>
+
+							<div class="col-xs-6"><input type="text"  class="form-control"  ng-model="propdataedit.LegalDescription" /></div></div><div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">Country</label></div>
+							<div class="col-xs-6"><input type="text"  class="form-control"  ng-model="propdataedit.CountyName" /></div></div><div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">Built Year</label></div>
+							<div class="col-xs-6"><input type="text"  class="form-control"  ng-model="propdataedit.YearBuilt" /></div></div><div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">No. of Bed Rooms</label></div>
+							<div class="col-xs-6"><input type="text"  class="form-control"  ng-model="propdataedit.Bedrooms" /></div></div><div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">No. of Bathrooms</label></div>
+							<div class="col-xs-6"><input type="text"  class="form-control"  ng-model="propdataedit.Bathrooms" /></div></div><div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">Square feet</label></div>
+							<div class="col-xs-6"><input type="text"  class="form-control"  ng-model="propdataedit.SquareFeet" /></div></div><div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">Heating Type</label></div>
+							<div class="col-xs-6"><input type="text"  class="form-control"  ng-model="propdataedit.HeatingType" /></div></div><div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">Cooling Type</label></div>
+							<div class="col-xs-6"><input type="text"  class="form-control"  ng-model="propdataedit.CoolingType" /></div></div><div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">Exterior Type</label></div>
+							<div class="col-xs-6"><input type="text"  class="form-control"  ng-model="propdataedit.ExteriorType" /></div></div><div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">Roof Type</label></div>
+							<div class="col-xs-6"><input type="text"  class="form-control"  ng-model="propdataedit.RoofType" /></div></div><div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">Tax Amount</label></div>
+							<div class="col-xs-6"><input type="text"  class="form-control"  ng-model="propdataedit.TaxAmount" /></div></div><div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">PayOff</label></div>
+							<div class="col-xs-6"><input type="text"  class="form-control"  ng-model="propdataedit.PayOff" /></div></div><div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">Status Of Property</label></div>
+							<div class="col-xs-6"><input type="text"  class="form-control"  ng-model="propdataedit.StatusOfProperty" /></div></div><div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">Lead Type</label></div>
+							<div class="col-xs-6"><input type="text"  class="form-control"  ng-model="propdataedit.LeadType" /></div></div><div class="col-xs-12"><div class="col-xs-6"><label class="titletxt">Phone Number</label></div>
+							<div class="col-xs-6"><input type="text"  class="form-control"  ng-model="propdataedit.DisplayPhoneNumber" /></div></div>
+							<div class="hidden">
+								<input type="text" ng-model = "propdataedit.PropertyId" value="1" />
+							</div>
+				<div class="col-xs-12">
+				<div class="col-xs-6"><input type="submit" class="form-control btn btn-primary"  ng-click="editpropsubmit()" /></div>
+				</div>
+		  </form>
+			</div>
+
+	  </section>
+	   </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!--Wait Modal-->
+<div id="modal_wait" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+  <!-- Modal content-->
+
+      <div class="modal-body">
+        <h3>Please Wait.....</h3>
+      </div>
+
+
+  </div>
+</div>
+
+
+</div>
+</body>
+</html>

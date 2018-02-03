@@ -1,0 +1,133 @@
+<section id="section-buyer" class="col-xs-11" ng-controller="buyerList">
+    <div class="clearfix container">
+        <div class="section-heading col-xs-12 col-md-4 ">
+            <h2>Buyers</h2>
+        </div>
+        <div class="col-xs-12 col-md-8">
+            <ul class="admin-opt">
+                <li class="active"><a href="javascript:void(0)" ng-click="buyerListDB()" id="buyerlisttab" data-toggle="tab"  data-target="#buyer-list">Buyer List</a></li>
+                <li><a href="javascript:void(0)" data-toggle="tab" ng-click="buyerListDB()"  data-target="#add-buyer">Add Buyer</a></li>
+                <li class="hidden"><a href="javascript:void(0)" data-toggle="tab"  data-target="#edit-buyer">Edit Buyer</a></li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="tab-content container">
+        <section id="buyer-list" class="tab-pane fade in active col-xs-12">
+
+
+            <div class="alert delete_buyer_success alert-success hidden" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Success:</span>
+                Buyer deleted successfully!!!
+            </div>
+            <div class="col-xs-12 table-responsive  table-box">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr class="bg-info">
+                            <th>SN.</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Phone Number</th>
+                            <th>Address </th>
+                            <th>Mobile</th>
+                            <th>Email</th>
+                            <th>Preferred Contact Timing</th>
+                            <th>Budget</th>
+                            <th>Action</th>
+
+
+                        </tr></thead>
+                    <tbody>
+                        <tr ng-repeat="x in buyerrecord track by $index">
+                            <td><span>{{$index + 1}}</span></td>
+                            <td><span>{{x.FirstName}}</span></td>
+                            <td><span>{{x.LastName}}</span></td>
+                            <td><span>{{x.PhoneNumber}}</span></td>
+                            <td>
+                                <span>{{x.AddressLine1}}</span> <span>{{x.AddressLine2}} ,</span>
+                                <span>{{x.City}} ,</span>
+                                <span>{{x.State}} -</span>
+                                <span>{{x.Zip}}</span>
+                            </td>
+                            <td><span>{{x.PhoneNumber}}</span></td>
+                            <td><span>{{x.EmailId}}</span></td>
+                            <td><span>{{x.PreferredContactTiming}}</span></td>
+                            <td><span>{{x.FromBudget}} - {{x.ToBudget}}</span></td>
+                            <td>
+                                <a href="javascript:void(0)" class="action" ng-click="edit_buyer(x.BuyerId)"><span class="glyphicon glyphicon-pencil text-green"></span></a>
+                                <a href="javascript:void(0)" class="action" ng-click="delete_buyer(x.BuyerId)" ng-confirm-click="You are about to delete buyer from list !! Are you SURE you want to delete?"><span class="glyphicon glyphicon-remove text-red"></span></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+
+        </section>
+        <section id="add-buyer" class="tab-pane fade">
+
+            <div class="col-xs-12 col-md-8 table-box">
+                <div class="alert successadded alert-success hidden" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span class="sr-only">Success:</span>
+                    Congratulation New buyer added successfully!!!
+                </div>
+                <form method="POST" id="addbuyerform"   >
+                    <div class="col-xs-12">
+                        <div class="col-xs-6">
+                            <label class="titletxt">First Name</label>
+                        </div>
+                        <div class="col-xs-6"><input type="text" required class="form-control" required ng-model="buyer.FirstName" /></div></div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6"><label class="titletxt">Last Name</label></div>
+                        <div class="col-xs-6"><input type="text" class="form-control" required ng-model="buyer.LastName" /></div></div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6"><label class="titletxt">Phone Number</label></div>
+                        <div class="col-xs-6"><input type="text" class="form-control" required ng-model="buyer.PhoneNumber" /></div></div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6"><label class="titletxt">Address Line1</label></div>
+                        <div class="col-xs-6"><input type="text" class="form-control" required ng-model="buyer.AddressLine1" /></div>
+
+                    </div><div class="col-xs-12">
+                        <div class="col-xs-6"><label class="titletxt">Address Line2</label></div>
+                        <div class="col-xs-6"><input type="text" class="form-control" required ng-model="buyer.AddressLine2" /></div>
+
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6"><label class="titletxt">City</label></div>
+                        <div class="col-xs-6"><input type="text" class="form-control" required ng-model="buyer.City" /></div></div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6"><label class="titletxt">State</label></div>
+                        <div class="col-xs-6"><input type="text" class="form-control" required ng-model="buyer.State" /></div></div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6"><label class="titletxt">Zip</label></div>
+                        <div class="col-xs-6"><input type="text" class="form-control" required ng-model="buyer.Zip" /></div></div>
+
+
+
+                  	<div class="col-xs-12">
+                        <div class="col-xs-6"><label class="titletxt">Preferred Contact Timing</label></div>
+                        <div class="col-xs-6"><input type="text" class="form-control" required ng-model="buyer.PreferredContactTiming" /></div>
+                         <div class="hidden">
+						                                <div class="col-xs-6"><input type="text" class="form-control" value="9" required ng-model="seller.PreferredContactTiming" /></div>
+                            </div></div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6"><label class="titletxt">Email</label></div>
+                        <div class="col-xs-6"><input type="text" class="form-control" required ng-model="buyer.EmailId" />
+
+                        </div></div><div class="col-xs-12">
+                        <div class="col-xs-6"><label class="titletxt">From Budget</label></div>
+                        <div class="col-xs-6"><input type="text" class="form-control" required ng-model="buyer.FromBudget" /></div></div><div class="col-xs-12">
+                        <div class="col-xs-6"><label class="titletxt">To Budget</label></div>
+                        <div class="col-xs-6"><input type="text" class="form-control" required ng-model="buyer.ToBudget" /></div></div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6"><input type="submit" class="form-control btn btn-primary" required ng-click="addbuyersubmit()" /></div>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+    </div>
+</section>

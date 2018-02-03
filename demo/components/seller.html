@@ -1,0 +1,118 @@
+<section id="section-seller" class="col-xs-11" ng-controller="sellerList">
+
+    <div class="clearfix container">
+        <div class="section-heading col-xs-12 col-md-4 ">
+            <h2>Seller</h2>
+        </div>
+        <div class="col-xs-12 col-md-8">
+            <ul class="admin-opt">
+                <li class="active"><a href="javascript:void(0)" ng-click="sellerListDB()" id="sellerlisttab" data-toggle="tab"  data-target="#seller-list">Seller List</a></li>
+                <li><a href="javascript:void(0)" data-toggle="tab" ng-click="sellerListDB()"  data-target="#add-seller">Add Seller</a></li>
+				<li class="hidden"><a href="javascript:void(0)" data-toggle="tab"  data-target="#edit-seller">Edit Seller</a></li>
+
+            </ul>
+        </div>
+    </div>
+
+
+
+    <div class="tab-content container">
+        <section id="seller-list" class="tab-pane fade in active">
+            <div class="col-xs-12 table-responsive table-box">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr class="bg-info">
+                            <th>SN.</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Phone Number</th>
+                            <th>Address </th>
+                            <th>Mobile</th>
+                            <th>Email</th>
+                            <th>Action</th>
+
+
+                        </tr></thead>
+                    <tbody>
+                        <tr ng-repeat="x in sellerrecord track by $index">
+                            <td><span>{{$index + 1}}</span></td>
+                            <td><span>{{x.FirstName}}</span></td>
+                            <td><span>{{x.LastName}}</span></td>
+                            <td><span>{{x.PhoneNumber}}</span></td>
+                            <td>
+                                <span>{{x.AddressLine1}}</span><span>{{x.AddressLine2}} ,</span>
+                                <span>{{x.City}} ,</span>
+                                <span>{{x.State}} -</span>
+                                <span>{{x.Zip}}</span>
+                            </td>
+                            <td><span>{{x.PhoneNumber}}</span></td>
+                            <td><span>{{x.SellerEmailId}}</span></td>
+
+
+                            <td>
+                                <a href="javascript:void(0)" class="action" ng-click="edit_seller(x.SellerId)">
+                                    <span class="glyphicon glyphicon-pencil text-green"></span></a>
+                                <a href="javascript:void(0)" class="action" confirmed-click="delete_seller(x.SellerId)" ng-confirm-click="You are about to delete Seller from list !! Are you SURE you want to delete?"><span class="glyphicon glyphicon-remove text-red"></span></a>
+                            </td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="add-seller" class="tab-pane fade">
+
+            <div class="col-xs-12 col-md-8 table-box">
+                <div class="alert successadded alert-success hidden" role="alert">
+                    <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                    <span class="sr-only">Success:</span>
+                    Congratulation New Seller added successfully!!!
+                </div>
+                <form method="POST" id="addsellerform"   >
+                    <div class="col-xs-12">
+                        <div class="col-xs-6">
+                            <label class="titletxt">First Name</label>
+                        </div>
+                        <div class="col-xs-6"><input type="text" required class="form-control" required ng-model="seller.FirstName" /></div></div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6"><label class="titletxt">Last Name1</label></div>
+                        <div class="col-xs-6"><input type="text" class="form-control" required ng-model="seller.LastName" /></div></div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6"><label class="titletxt">Phone Number</label></div>
+                        <div class="col-xs-6"><input type="text" class="form-control" required ng-model="seller.PhoneNumber" /></div></div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6"><label class="titletxt">Address Line1</label></div>
+                        <div class="col-xs-6"><input type="text" class="form-control" required ng-model="seller.AddressLine1" /></div>
+
+                    </div><div class="col-xs-12">
+                        <div class="col-xs-6"><label class="titletxt">Address Line2</label></div>
+                        <div class="col-xs-6"><input type="text" class="form-control" required ng-model="seller.AddressLine2" /></div>
+
+                    </div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6"><label class="titletxt">City</label></div>
+                        <div class="col-xs-6"><input type="text" class="form-control" required ng-model="seller.City" /></div></div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6"><label class="titletxt">State</label></div>
+                        <div class="col-xs-6"><input type="text" class="form-control" required ng-model="seller.State" /></div></div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6"><label class="titletxt">Zip</label></div>
+                        <div class="col-xs-6"><input type="text" class="form-control" required ng-model="seller.Zip" /></div></div>
+
+
+
+                    <div class="col-xs-12">
+                        <div class="col-xs-6"><label class="titletxt">Email</label></div>
+                        <div class="col-xs-6"><input type="text" class="form-control" required ng-model="seller.SellerEmailId" />
+                            <div class="hidden">
+                                <div class="col-xs-6"><input type="text" class="form-control" value="9" required ng-model="seller.PreferredContactTiming" /></div>
+                            </div>
+                        </div></div>
+                    <div class="col-xs-12">
+                        <div class="col-xs-6"><input type="submit" class="form-control btn btn-primary" required ng-click="addsellersubmit()" /></div>
+                    </div>
+                </form>
+            </div>
+        </section>
+
+</section>
